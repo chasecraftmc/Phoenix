@@ -22,10 +22,14 @@ public class GUIHandler {
      */
     static final Map<UUID, GUI> OPEN_GUIS = Maps.newConcurrentMap();
 
+    private static final GUIUpdater updater = new GUIUpdater();
+
     static {
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
         //Just register it with the first plugin that is on Spigot (Sort of a bad way to do it but it is what it is LOL)
         Bukkit.getPluginManager().registerEvents(new GUIListener(), Bukkit.getPluginManager().getPlugins()[0]);
+
+        updater.start();
     }
 
 }

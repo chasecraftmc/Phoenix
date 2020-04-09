@@ -1,5 +1,6 @@
 package me.blazingtide.phoenix;
 
+import lombok.Getter;
 import me.blazingtide.phoenix.button.Button;
 import me.blazingtide.phoenix.enums.TickResult;
 import org.bukkit.Bukkit;
@@ -15,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+@Getter
 public abstract class GUI {
 
     /**
