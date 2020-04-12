@@ -2,6 +2,7 @@ package me.blazingtide.phoenix;
 
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
+import org.bukkit.event.inventory.InventoryType;
 
 import java.util.Map;
 import java.util.UUID;

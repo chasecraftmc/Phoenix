@@ -36,7 +36,7 @@ public class GUIListener implements Listener {
         if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
             final GUI gui = GUIHandler.OPEN_GUIS.get(player.getUniqueId());
 
-
+            gui.getButtons()[event.getRawSlot()].getClickConsumer().accept(event);
         }
     }
 

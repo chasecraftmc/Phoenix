@@ -52,7 +52,7 @@ public abstract class GUI {
      * Called whenever the GUI is ready to update.
      * The correct usage would be to return a Optional of ERROR on error
      * and to set the buttons to update the GUI
-     *
+     * <p>
      * Usage:
      * <ul>
      *     <li>buttons[index] = new Button(player, this, itemStack, consumer)</li>
@@ -60,7 +60,7 @@ public abstract class GUI {
      *
      * @return optional of weather the tick event failed just in case some error happened, we can prevent any other inventories from being affected
      */
-    abstract Optional<TickResult> onTick();
+    public abstract Optional<TickResult> onTick();
 
     /**
      * Called whenever this GUI is opened.
@@ -101,7 +101,7 @@ public abstract class GUI {
             return;
         }
 
-        final List<Button> array = Arrays.asList(this.buttons);
+        final List<Button<?>> array = Arrays.asList(this.buttons);
 
         //We want to use a parallel stream because we want it to update as fast as possible without any latency
         array.parallelStream().filter(Objects::nonNull).forEachOrdered(button -> inventory.setItem(array.indexOf(button), button.getItem()));
@@ -133,7 +133,7 @@ public abstract class GUI {
      * @return created inventory
      */
     public Inventory createInventory() {
-        return Bukkit.createInventory(null, size, title);
+        return Bukkit.createInventory(null, size, ChatColor.translateAlternateColorCodes('&', title));
     }
 
     /**
