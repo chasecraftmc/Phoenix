@@ -2,7 +2,7 @@ package me.blazingtide.phoenix;
 
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
 import java.util.UUID;
@@ -25,10 +25,9 @@ public class GUIHandler {
 
     private static final GUIUpdater updater = new GUIUpdater();
 
-    static {
+    public static void init(JavaPlugin plugin) {
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
-        //Just register it with the first plugin that is on Spigot (Sort of a bad way to do it but it is what it is LOL)
-        Bukkit.getPluginManager().registerEvents(new GUIListener(), Bukkit.getPluginManager().getPlugins()[0]);
+        Bukkit.getPluginManager().registerEvents(new GUIListener(), plugin);
 
         updater.start();
     }
