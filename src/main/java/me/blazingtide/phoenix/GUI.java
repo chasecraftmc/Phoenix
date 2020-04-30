@@ -26,15 +26,15 @@ public abstract class GUI {
      */
     private static final long REGULAR_UPDATE_TICK = TimeUnit.MILLISECONDS.toSeconds(1);
 
-    private final Player player;
-    private final String title;
-    private final int size;
+    protected final Player player;
+    protected final String title;
+    protected final int size;
 
-    private final Button[] buttons;
+    protected final Button[] buttons;
 
-    private long lastTick;
+    protected long lastTick;
 
-    private Inventory inventory;
+    protected Inventory inventory;
 
     protected GUI(Player player, String title, int size) {
         this.player = player;
@@ -101,7 +101,7 @@ public abstract class GUI {
             return;
         }
 
-        final List<Button<?>> array = Arrays.asList(this.buttons);
+        final List<Button> array = Arrays.asList(this.buttons);
 
         //We want to use a parallel stream because we want it to update as fast as possible without any latency
         array.parallelStream().filter(Objects::nonNull).forEachOrdered(button -> inventory.setItem(array.indexOf(button), button.getItem()));

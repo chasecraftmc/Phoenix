@@ -8,30 +8,30 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Consumer;
 
-public class ButtonBuilder<T extends GUI> {
+public class ButtonBuilder {
 
     private ItemStack item;
-    private T gui;
+    private GUI gui;
     private Consumer<InventoryClickEvent> clickConsumer;
 
-    public ButtonBuilder<?> withItem(ItemStack item) {
+    public ButtonBuilder withItem(ItemStack item) {
         this.item = item;
         return this;
     }
 
-    public ButtonBuilder<?> withGUI(T gui) {
+    public ButtonBuilder withGUI(GUI gui) {
         this.gui = gui;
         return this;
     }
 
-    public ButtonBuilder<?> onClick(Consumer<InventoryClickEvent> consumer) {
+    public ButtonBuilder onClick(Consumer<InventoryClickEvent> consumer) {
         clickConsumer = consumer;
 
         return this;
     }
 
-    public Button<T> build(Player player) {
-        return new Button<T>(player, gui, item, clickConsumer);
+    public Button build(Player player) {
+        return new Button(player, gui, item, clickConsumer);
     }
 
 }

@@ -9,14 +9,14 @@ import org.bukkit.inventory.ItemStack;
 import java.util.function.Consumer;
 
 @Getter
-public class Button<T extends GUI> {
+public class Button {
 
     private final Player player;
-    private final T gui;
+    private final GUI gui;
     private final ItemStack item;
     private final Consumer<InventoryClickEvent> clickConsumer;
 
-    public Button(Player player, T gui, ItemStack item, Consumer<InventoryClickEvent> clickConsumer) {
+    public Button(Player player, GUI gui, ItemStack item, Consumer<InventoryClickEvent> clickConsumer) {
         this.player = player;
         this.gui = gui;
         this.item = item;
