@@ -25,11 +25,18 @@ public class GUIHandler {
 
     private static final GUIUpdater updater = new GUIUpdater();
 
+    private static boolean setup = false;
+
     public static void init(JavaPlugin plugin) {
+        if (setup) {
+            return;
+        }
+
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
         Bukkit.getPluginManager().registerEvents(new GUIListener(), plugin);
 
         updater.start();
+        setup = true;
     }
 
 }
