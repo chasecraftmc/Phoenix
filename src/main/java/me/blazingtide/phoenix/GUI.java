@@ -121,6 +121,7 @@ public abstract class GUI {
 
         inventory = createInventory();
         GUIHandler.OPEN_GUIS.put(player.getUniqueId(), this);
+        update();
 
         player.openInventory(inventory);
     }
