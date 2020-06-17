@@ -1,5 +1,6 @@
 package me.blazingtide.phoenix;
 
+import me.blazingtide.phoenix.button.Button;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,7 +37,11 @@ public class GUIListener implements Listener {
         if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
             final GUI gui = GUIHandler.OPEN_GUIS.get(player.getUniqueId());
 
-            gui.getButtons()[event.getRawSlot()].getClickConsumer().accept(event);
+            Button button = gui.getButtons()[event.getRawSlot()];
+
+            if (button != null) {
+                button.getClickConsumer().accept(event);
+            }
         }
     }
 
