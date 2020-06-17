@@ -19,6 +19,8 @@ import java.util.Optional;
 @Setter
 public abstract class PaginatedGUI extends GUI {
 
+    public static ItemStack PAGINATED_GUI_FILLER = new ItemStack(Material.STAINED_GLASS_PANE);
+
     private int page = 1;
 
     public PaginatedGUI(Player player, String title) {
@@ -39,7 +41,7 @@ public abstract class PaginatedGUI extends GUI {
         }
 
         for (int i = 9; i < 18; i++) {
-            buttons[i] = new ButtonBuilder().withGUI(this).withItem(new ItemStack(Material.STAINED_GLASS_PANE)).build(player);
+            buttons[i] = new ButtonBuilder().withGUI(this).withItem(PAGINATED_GUI_FILLER).build(player);
         }
 
         buttons[9] = new PaginatedButton(player, this, PaginationType.NEXT_PAGE);
