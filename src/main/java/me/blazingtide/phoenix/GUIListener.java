@@ -34,7 +34,7 @@ public class GUIListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
 
-        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
+        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId()) && event.getClickedInventory().equals(player.getOpenInventory().getTopInventory())) {
             final GUI gui = GUIHandler.OPEN_GUIS.get(player.getUniqueId());
 
             Button button = gui.getButtons()[event.getRawSlot()];
