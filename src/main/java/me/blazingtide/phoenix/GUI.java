@@ -22,7 +22,7 @@ public abstract class GUI {
     /**
      * Basically how long until the GUI autoupdates for the player.
      * <p>
-     * Default will be 1 minute.
+     * Default will be 1 second.
      */
     private static final long REGULAR_UPDATE_TICK = TimeUnit.MILLISECONDS.toSeconds(1);
 
