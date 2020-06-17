@@ -1,6 +1,7 @@
 package me.blazingtide.phoenix.button;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.blazingtide.phoenix.GUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,6 +16,9 @@ public class Button {
     private final GUI gui;
     private final ItemStack item;
     private final Consumer<InventoryClickEvent> clickConsumer;
+
+    @Setter
+    private boolean autoCancelEvent = true;
 
     public Button(Player player, GUI gui, ItemStack item, Consumer<InventoryClickEvent> clickConsumer) {
         this.player = player;

@@ -12,7 +12,8 @@ public class ButtonBuilder {
 
     private ItemStack item;
     private GUI gui;
-    private Consumer<InventoryClickEvent> clickConsumer;
+    private Consumer<InventoryClickEvent> clickConsumer = event -> {
+    };
 
     public ButtonBuilder withItem(ItemStack item) {
         this.item = item;

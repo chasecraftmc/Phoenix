@@ -40,6 +40,9 @@ public class GUIListener implements Listener {
             Button button = gui.getButtons()[event.getRawSlot()];
 
             if (button != null) {
+                if (button.isAutoCancelEvent()) {
+                    event.setCancelled(true);
+                }
                 button.getClickConsumer().accept(event);
             }
         }

@@ -120,14 +120,14 @@ public abstract class GUI {
         }
 
         inventory = createInventory();
-        if (player.getOpenInventory() != null) {
-            player.closeInventory();
-        }
+//        if (player.getOpenInventory() != null) {
+//            player.closeInventory();
+//        }
 
-        GUIHandler.OPEN_GUIS.put(player.getUniqueId(), this);
         update();
 
         player.openInventory(inventory);
+        GUIHandler.OPEN_GUIS.put(player.getUniqueId(), this);
     }
 
     /**
