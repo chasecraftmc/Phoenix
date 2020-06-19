@@ -6,6 +6,7 @@ import me.blazingtide.phoenix.enums.TickResult;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
@@ -63,6 +64,14 @@ public abstract class GUI {
     public abstract Optional<TickResult> onTick();
 
     /**
+     * Called whenever a player clicks an item in their inventory
+     * while this GUI is open.
+     *
+     * @param event which is called.
+     */
+    public void onPlayerInventoryClick(InventoryClickEvent event) {}
+
+                        /**
      * Called whenever this GUI is opened.
      *
      * @param event inventory open event
@@ -120,9 +129,6 @@ public abstract class GUI {
         }
 
         inventory = createInventory();
-//        if (player.getOpenInventory() != null) {
-//            player.closeInventory();
-//        }
 
         update();
 

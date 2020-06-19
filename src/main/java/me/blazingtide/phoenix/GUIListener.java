@@ -34,16 +34,20 @@ public class GUIListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
 
-        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId()) && event.getClickedInventory().equals(player.getOpenInventory().getTopInventory())) {
+        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
             final GUI gui = GUIHandler.OPEN_GUIS.get(player.getUniqueId());
 
-            Button button = gui.getButtons()[event.getRawSlot()];
+            if (event.getClickedInventory().equals(player.getOpenInventory().getTopInventory())) {
+                Button button = gui.getButtons()[event.getRawSlot()];
 
-            if (button != null) {
-                if (button.isAutoCancelEvent()) {
-                    event.setCancelled(true);
+                if (button != null) {
+                    if (button.isAutoCancelEvent()) {
+                        event.setCancelled(true);
+                    }
+                    button.getClickConsumer().accept(event);
                 }
-                button.getClickConsumer().accept(event);
+            } else if (event.getClickedInventory().equals(player.getOpenInventory().getBottomInventory()) && event.getCurrentItem() != null){
+                gui.onPlayerInventoryClick(event);
             }
         }
     }
