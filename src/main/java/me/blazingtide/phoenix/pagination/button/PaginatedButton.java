@@ -9,6 +9,10 @@ public class PaginatedButton extends Button {
     public PaginatedButton(Player player, PaginatedGUI gui, PaginationType type) {
         super(player, gui, type.getItem(), event -> {
             if (type == PaginationType.NEXT_PAGE) {
+                if (gui.getMaxPage() < gui.getPage()) {
+                    gui.setPage(gui.getMaxPage());
+                    return;
+                }
                 gui.setPage(gui.getPage() + 1);
             } else {
                 if (gui.getPage() > 1) {
