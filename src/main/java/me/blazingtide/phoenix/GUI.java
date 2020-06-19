@@ -151,4 +151,15 @@ public abstract class GUI {
         return false;
     }
 
+    /**
+     * Returns the first empty slot in the inventory.
+     *
+     * Returns -1 if there's not slot empty.
+     *
+     * @return slot
+     */
+    public int firstEmpty() {
+        return inventory.firstEmpty();
+    }
+
 }
