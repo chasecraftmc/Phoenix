@@ -24,7 +24,11 @@ public abstract class PaginatedGUI extends GUI {
     private int page = 1;
 
     public PaginatedGUI(Player player, String title) {
-        super(player, title, 18);
+        this(player, title, 18);
+    }
+
+    public PaginatedGUI(Player player, String title, int size) {
+        super(player, title, size);
     }
 
     public abstract List<Button> getPageButtons();
@@ -40,12 +44,12 @@ public abstract class PaginatedGUI extends GUI {
             buttons[i] = objects.get(i * page);
         }
 
-        for (int i = 9; i < 18; i++) {
+        for (int i = 9; i < size; i++) {
             buttons[i] = new ButtonBuilder().withGUI(this).withItem(PAGINATED_GUI_FILLER).build(player);
         }
 
-        buttons[9] = new PaginatedButton(player, this, PaginationType.NEXT_PAGE);
-        buttons[17] = new PaginatedButton(player, this, PaginationType.PREVIOUS_PAGE);
+        buttons[size - 9] = new PaginatedButton(player, this, PaginationType.NEXT_PAGE);
+        buttons[size - 1] = new PaginatedButton(player, this, PaginationType.PREVIOUS_PAGE);
 
         return Optional.empty();
     }
