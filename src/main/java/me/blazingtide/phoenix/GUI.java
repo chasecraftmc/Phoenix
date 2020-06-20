@@ -37,7 +37,7 @@ public abstract class GUI {
 
     protected Inventory inventory;
 
-    protected GUI(Player player, String title, int size) {
+    public GUI(Player player, String title, int size) {
         this.player = player;
         this.title = ChatColor.translateAlternateColorCodes('&', title);
         this.size = size;

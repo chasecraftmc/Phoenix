@@ -8,15 +8,20 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 
+import java.util.Map;
+import java.util.UUID;
+
 public class GUIListener implements Listener {
 
+    private static final Map<UUID, GUI> guis = GUIHandler.OPEN_GUIS;
+    
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
         final HumanEntity player = event.getPlayer();
 
         //We can assume that the player's open GUI is the same GUI that we store in the Map.
-        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
-            GUIHandler.OPEN_GUIS.get(player.getUniqueId()).onOpen(event);
+        if (guis.containsKey(player.getUniqueId())) {
+            guis.get(player.getUniqueId()).onOpen(event);
         }
     }
 
@@ -25,8 +30,8 @@ public class GUIListener implements Listener {
         final HumanEntity player = event.getPlayer();
 
         //We can assume that the player's open GUI is the same GUI that we store in the Map.
-        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
-            GUIHandler.OPEN_GUIS.remove(player.getUniqueId()).onClose(event);
+        if (guis.containsKey(player.getUniqueId())) {
+            guis.remove(player.getUniqueId()).onClose(event);
         }
     }
 
@@ -34,8 +39,8 @@ public class GUIListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         final HumanEntity player = event.getWhoClicked();
 
-        if (GUIHandler.OPEN_GUIS.containsKey(player.getUniqueId())) {
-            final GUI gui = GUIHandler.OPEN_GUIS.get(player.getUniqueId());
+        if (guis.containsKey(player.getUniqueId())) {
+            final GUI gui = guis.get(player.getUniqueId());
 
             if (player.getOpenInventory() == null || event.getClickedInventory() == null) {
                 return;
