@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
@@ -90,6 +91,15 @@ public abstract class GUI {
     }
 
     /**
+     * Called whenever a player drags an item within the inventory
+     *
+     * @param event inventory drag event
+     */
+    public void onDrag(InventoryDragEvent event) {
+
+    }
+
+    /**
      * Updates the inventory for the player.
      * It's final since we don't want anyone that's using the library
      * to accidentally screw up the update sequence and slow down the entire
@@ -129,6 +139,10 @@ public abstract class GUI {
         }
 
         inventory = createInventory();
+
+        if (player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null) {
+            player.closeInventory(); //call close inventory first
+        }
 
         update();
 
