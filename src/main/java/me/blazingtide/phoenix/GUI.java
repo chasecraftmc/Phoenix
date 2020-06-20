@@ -8,7 +8,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
@@ -70,9 +69,10 @@ public abstract class GUI {
      *
      * @param event which is called.
      */
-    public void onPlayerInventoryClick(InventoryClickEvent event) {}
+    public void onPlayerInventoryClick(InventoryClickEvent event) {
+    }
 
-                        /**
+    /**
      * Called whenever this GUI is opened.
      *
      * @param event inventory open event
@@ -91,11 +91,12 @@ public abstract class GUI {
     }
 
     /**
-     * Called whenever a player drags an item within the inventory
+     * Called whenever a player clicks an item in the inventory.
+     * called before button's handler
      *
      * @param event inventory drag event
      */
-    public void onDrag(InventoryDragEvent event) {
+    public void onClickRaw(InventoryClickEvent event) {
 
     }
 
@@ -173,7 +174,7 @@ public abstract class GUI {
 
     /**
      * Returns the first empty slot in the inventory.
-     *
+     * <p>
      * Returns -1 if there's not slot empty.
      *
      * @return slot

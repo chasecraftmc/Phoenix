@@ -4,7 +4,9 @@ import me.blazingtide.phoenix.button.Button;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 
 import java.util.Map;
 import java.util.UUID;
@@ -12,7 +14,7 @@ import java.util.UUID;
 public class GUIListener implements Listener {
 
     private static final Map<UUID, GUI> guis = GUIHandler.OPEN_GUIS;
-    
+
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
         final HumanEntity player = event.getPlayer();
@@ -20,15 +22,6 @@ public class GUIListener implements Listener {
         //We can assume that the player's open GUI is the same GUI that we store in the Map.
         if (guis.containsKey(player.getUniqueId())) {
             guis.get(player.getUniqueId()).onOpen(event);
-        }
-    }
-
-    @EventHandler
-    public void onDrag(InventoryDragEvent event) {
-        final HumanEntity player = event.getWhoClicked();
-
-        if (guis.containsKey(player.getUniqueId())) {
-            guis.get(player.getUniqueId()).onDrag(event);
         }
     }
 
@@ -49,6 +42,8 @@ public class GUIListener implements Listener {
         if (guis.containsKey(player.getUniqueId())) {
             final GUI gui = guis.get(player.getUniqueId());
 
+            gui.onClickRaw(event);
+
             if (player.getOpenInventory() == null || event.getClickedInventory() == null) {
                 return;
             }
@@ -62,7 +57,7 @@ public class GUIListener implements Listener {
                     }
                     button.getClickConsumer().accept(event);
                 }
-            } else if (event.getClickedInventory().equals(player.getOpenInventory().getBottomInventory()) && event.getCurrentItem() != null){
+            } else if (event.getClickedInventory().equals(player.getOpenInventory().getBottomInventory()) && event.getCurrentItem() != null) {
                 gui.onPlayerInventoryClick(event);
             }
         }
