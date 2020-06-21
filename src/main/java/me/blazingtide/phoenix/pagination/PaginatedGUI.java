@@ -1,6 +1,5 @@
 package me.blazingtide.phoenix.pagination;
 
-import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import me.blazingtide.phoenix.GUI;
@@ -24,10 +23,8 @@ public abstract class PaginatedGUI extends GUI {
 
     protected int maxPage;
     protected int maxElements;
-
-    private List<Button> elements;
-
     protected int page = 1;
+    private List<Button> elements;
 
     public PaginatedGUI(Player player, String title) {
         this(player, title, 18);
@@ -62,8 +59,12 @@ public abstract class PaginatedGUI extends GUI {
             buttons[i] = new ButtonBuilder().withGUI(this).withItem(PAGINATED_GUI_FILLER).build(player);
         }
 
-        buttons[size - 9] = new PaginatedButton(player, this, PaginationType.PREVIOUS_PAGE);
-        buttons[size - 1] = new PaginatedButton(player, this, PaginationType.NEXT_PAGE);
+        if (page <= 1) {
+            buttons[size - 9] = new PaginatedButton(player, this, PaginationType.PREVIOUS_PAGE);
+        }
+        if (page == maxPage) {
+            buttons[size - 1] = new PaginatedButton(player, this, PaginationType.NEXT_PAGE);
+        }
 
         return Optional.empty();
     }
