@@ -137,9 +137,9 @@ public abstract class GUI {
      * Opens the inventory for the player
      */
     public final void open() {
-        if (inventory != null) {
-            Bukkit.getLogger().severe(Phoenix.PREFIX + " Tried to open gui twice. (" + getID() + " for player " + player.getName() + ")");
-        }
+//        if (inventory != null) {
+//            Bukkit.getLogger().severe(Phoenix.PREFIX + " Tried to open gui twice. (" + getID() + " for player " + player.getName() + ")");
+//        }
 
         inventory = createInventory();
 
