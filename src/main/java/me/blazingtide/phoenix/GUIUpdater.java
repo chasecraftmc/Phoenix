@@ -10,7 +10,7 @@ public class GUIUpdater extends Thread {
     public void run() {
         while (true) {
             //Made it a parallel stream to prevent any latency with updating GUIs just in case you got a server with like 2k GUIs open.
-            GUIHandler.OPEN_GUIS.values().parallelStream().filter(gui -> gui.isAutoUpdating() && (System.currentTimeMillis() - gui.getLastTick() + gui.getUpdateTick() <= 0)).forEach(GUI::update);
+            Phoenix.OPEN_GUIS.values().parallelStream().filter(gui -> gui.isAutoUpdating() && (System.currentTimeMillis() - gui.getLastTick() + gui.getUpdateTick() <= 0)).forEach(GUI::update);
 
             try {
                 Thread.sleep(1);

@@ -12,7 +12,7 @@ import java.util.UUID;
  * So, each plugin should not be creating their own instances which will prevent overlaping of
  * GUIS.
  */
-public class GUIHandler {
+public class Phoenix {
 
     public static final String PREFIX = "[Phoenix GUI library] ";
 

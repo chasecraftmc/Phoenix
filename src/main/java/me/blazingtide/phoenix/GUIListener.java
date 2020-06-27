@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class GUIListener implements Listener {
 
-    private static final Map<UUID, GUI> guis = GUIHandler.OPEN_GUIS;
+    private static final Map<UUID, GUI> guis = Phoenix.OPEN_GUIS;
 
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {

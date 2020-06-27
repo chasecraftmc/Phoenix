@@ -136,7 +136,7 @@ public abstract class GUI {
      */
     public final void open() {
         if (inventory != null) {
-            Bukkit.getLogger().severe(GUIHandler.PREFIX + " Tried to open gui twice. (" + getID() + " for player " + player.getName() + ")");
+            Bukkit.getLogger().severe(Phoenix.PREFIX + " Tried to open gui twice. (" + getID() + " for player " + player.getName() + ")");
         }
 
         inventory = createInventory();
@@ -148,7 +148,7 @@ public abstract class GUI {
         update();
 
         player.openInventory(inventory);
-        GUIHandler.OPEN_GUIS.put(player.getUniqueId(), this);
+        Phoenix.OPEN_GUIS.put(player.getUniqueId(), this);
     }
 
     /**
