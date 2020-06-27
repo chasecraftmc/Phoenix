@@ -5,7 +5,7 @@ import lombok.Setter;
 import me.blazingtide.phoenix.GUI;
 import me.blazingtide.phoenix.button.Button;
 import me.blazingtide.phoenix.button.builder.ButtonBuilder;
-import me.blazingtide.phoenix.enums.TickResult;
+import me.blazingtide.phoenix.result.TickResult;
 import me.blazingtide.phoenix.pagination.button.PaginatedButton;
 import me.blazingtide.phoenix.pagination.button.PaginationType;
 import org.bukkit.Material;

@@ -1,5 +1,6 @@
 package me.blazingtide.phoenix;
 
+import lombok.AllArgsConstructor;
 import me.blazingtide.phoenix.button.Button;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
@@ -11,9 +12,10 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import java.util.Map;
 import java.util.UUID;
 
-public class GUIListener implements Listener {
+@AllArgsConstructor
+public class PhoenixListener implements Listener {
 
-    private static final Map<UUID, GUI> guis = Phoenix.OPEN_GUIS;
+    private final Map<UUID, GUI> guis;
 
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {

@@ -1,6 +1,7 @@
 package me.blazingtide.phoenix;
 
 import com.google.common.collect.Maps;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,31 +13,27 @@ import java.util.UUID;
  * So, each plugin should not be creating their own instances which will prevent overlaping of
  * GUIS.
  */
+@Getter
 public class Phoenix {
 
-    public static final String PREFIX = "[Phoenix GUI library] ";
-
+    static final String PREFIX = "[Phoenix GUI library] ";
     /**
      * Since we're going to be using multiple threads at the same time
      * when attempting to update GUIS for players, Concurrent HashMap will ensure that
      * there are 0 complications.
      */
-    static final Map<UUID, GUI> OPEN_GUIS = Maps.newConcurrentMap();
+    private final Map<UUID, GUI> openGUIS = Maps.newConcurrentMap();
+    private final UpdaterThread updater = new UpdaterThread(this);
 
-    private static final GUIUpdater updater = new GUIUpdater();
+    private final JavaPlugin plugin;
 
-    private static boolean setup = false;
-
-    public static void init(JavaPlugin plugin) {
-        if (setup) {
-            return;
-        }
+    public Phoenix(JavaPlugin plugin) {
+        this.plugin = plugin;
 
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
-        Bukkit.getPluginManager().registerEvents(new GUIListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new PhoenixListener(openGUIS), plugin);
 
         updater.start();
-        setup = true;
     }
 
 }

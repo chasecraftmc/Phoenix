@@ -2,7 +2,7 @@ package me.blazingtide.phoenix;
 
 import lombok.Getter;
 import me.blazingtide.phoenix.button.Button;
-import me.blazingtide.phoenix.enums.TickResult;
+import me.blazingtide.phoenix.result.TickResult;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -26,6 +26,8 @@ public abstract class GUI {
      * Default will be 1 second.
      */
     private static final long REGULAR_UPDATE_TICK = TimeUnit.MILLISECONDS.toSeconds(1);
+
+    static Phoenix PHOENIX;
 
     protected final Player player;
     protected final String title;
@@ -148,7 +150,12 @@ public abstract class GUI {
         update();
 
         player.openInventory(inventory);
-        Phoenix.OPEN_GUIS.put(player.getUniqueId(), this);
+
+        if (PHOENIX != null) {
+            PHOENIX.getOpenGUIS().put(player.getUniqueId(), this);
+        } else {
+            Bukkit.getLogger().severe(Phoenix.PREFIX + "Attempted to open a GUI without having Phoenix initialized.");
+        }
     }
 
     /**

@@ -1,4 +1,4 @@
-package me.blazingtide.phoenix.enums;
+package me.blazingtide.phoenix.result;
 
 public enum TickResult {
 
