@@ -34,6 +34,7 @@ public class Phoenix {
         Bukkit.getPluginManager().registerEvents(new PhoenixListener(openGUIS), plugin);
 
         updater.start();
+        GUI.PHOENIX = this;
     }
 
 }
