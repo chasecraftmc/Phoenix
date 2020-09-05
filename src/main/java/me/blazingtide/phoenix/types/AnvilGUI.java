@@ -8,14 +8,15 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
 /**
- * The default GUI
- * <p>
- * It's similar to Bukkit.createInventory() without a inventory type.
+ * Class made to open anvil gui and get the resultant text
  */
 public abstract class AnvilGUI extends GUI {
 
-    protected AnvilGUI(Player player, String title, int size) {
-        super(player, title, size);
+    private final String defaultText;
+
+    protected AnvilGUI(Player player, String title, String defaultText) {
+        super(player, title, 3);
+        this.defaultText = defaultText;
     }
 
     @Override
