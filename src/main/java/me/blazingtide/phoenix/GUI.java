@@ -128,6 +128,7 @@ public abstract class GUI {
 
         //We want to use a parallel stream because we want it to update as fast as possible without any latency
         array.parallelStream().filter(Objects::nonNull).forEachOrdered(button -> inventory.setItem(array.indexOf(button), button.getItem()));
+        lastTick = System.currentTimeMillis();
     }
 
     public long getUpdateTick() {
@@ -138,10 +139,6 @@ public abstract class GUI {
      * Opens the inventory for the player
      */
     public final void open() {
-//        if (inventory != null) {
-//            Bukkit.getLogger().severe(Phoenix.PREFIX + " Tried to open gui twice. (" + getID() + " for player " + player.getName() + ")");
-//        }
-
         inventory = createInventory();
 
         if (player.getOpenInventory() == null || player.getOpenInventory().getTopInventory() == null) {
