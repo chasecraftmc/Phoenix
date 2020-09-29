@@ -32,8 +32,6 @@ public class Phoenix {
 
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
         Bukkit.getPluginManager().registerEvents(new PhoenixListener(openGUIS), plugin);
-
-        updater.start();
         GUI.PHOENIX = this;
     }
 

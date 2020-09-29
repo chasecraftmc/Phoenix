@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.function.Consumer;
 
 @Getter
-public class Button {
+public class Button implements IButton {
 
     private final Player player;
     private final GUI gui;
@@ -27,4 +27,8 @@ public class Button {
         this.clickConsumer = clickConsumer;
     }
 
+    @Override
+    public void onClick(InventoryClickEvent event) {
+        clickConsumer.accept(event);
+    }
 }

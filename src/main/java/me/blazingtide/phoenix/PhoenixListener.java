@@ -1,7 +1,7 @@
 package me.blazingtide.phoenix;
 
 import lombok.AllArgsConstructor;
-import me.blazingtide.phoenix.button.Button;
+import me.blazingtide.phoenix.button.IButton;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,13 +51,13 @@ public class PhoenixListener implements Listener {
             }
 
             if (event.getClickedInventory().equals(player.getOpenInventory().getTopInventory())) {
-                Button button = gui.getButtons()[event.getRawSlot()];
+                IButton button = gui.getButtons()[event.getRawSlot()];
 
                 if (button != null) {
                     if (button.isAutoCancelEvent()) {
                         event.setCancelled(true);
                     }
-                    button.getClickConsumer().accept(event);
+                    button.onClick(event);
                 }
             } else if (event.getClickedInventory().equals(player.getOpenInventory().getBottomInventory()) && event.getCurrentItem() != null) {
                 gui.onPlayerInventoryClick(event);

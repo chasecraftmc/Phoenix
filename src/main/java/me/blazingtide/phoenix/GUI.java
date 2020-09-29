@@ -2,6 +2,7 @@ package me.blazingtide.phoenix;
 
 import lombok.Getter;
 import me.blazingtide.phoenix.button.Button;
+import me.blazingtide.phoenix.button.IButton;
 import me.blazingtide.phoenix.result.TickResult;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -33,7 +34,7 @@ public abstract class GUI {
     protected final String title;
     protected final int size;
 
-    protected final Button[] buttons;
+    protected final IButton[] buttons;
 
     protected long lastTick;
 
@@ -123,7 +124,7 @@ public abstract class GUI {
             return;
         }
 
-        final List<Button> array = Arrays.asList(this.buttons);
+        final List<IButton> array = Arrays.asList(this.buttons);
 
         //We want to use a parallel stream because we want it to update as fast as possible without any latency
         array.parallelStream().filter(Objects::nonNull).forEachOrdered(button -> inventory.setItem(array.indexOf(button), button.getItem()));
