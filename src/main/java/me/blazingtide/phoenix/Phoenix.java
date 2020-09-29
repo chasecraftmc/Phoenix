@@ -23,12 +23,13 @@ public class Phoenix {
      * there are 0 complications.
      */
     private final Map<UUID, GUI> openGUIS = Maps.newConcurrentMap();
-    private final UpdaterThread updater = new UpdaterThread(this);
-
     private final JavaPlugin plugin;
+
+    private UpdaterThread updater;
 
     public Phoenix(JavaPlugin plugin) {
         this.plugin = plugin;
+        this.updater = new UpdaterThread(this);
 
         Bukkit.getLogger().info(PREFIX + "Attempting to register the library.");
         Bukkit.getPluginManager().registerEvents(new PhoenixListener(openGUIS), plugin);
